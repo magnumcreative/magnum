@@ -1,37 +1,49 @@
 <?php
 /**
- * Custom meta boxes with the CMB plugin
+ * Include and setup custom metaboxes and fields.
  *
- * @link https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress
- * @link https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress/wiki/Basic-Usage
- * @link https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress/wiki/Field-Types
- * @link https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress/wiki/Display-Options
+ * @category YourThemeOrPlugin
+ * @package  Metaboxes
+ * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
+ * @link     https://github.com/webdevstudios/Custom-Metaboxes-and-Fields-for-WordPress
  */
 
-// add_filter('cmb_meta_boxes', 'cmb_ats_meta_boxes');
+function cmb_magnum_metaboxes( array $meta_boxes ) {
 
-// function cmb_ats_meta_boxes($meta_boxes) {
-//   // Start with an underscore to hide fields from custom fields list
-//     $prefix = '_cmb_';
-//   /**
-//    * Page Options meta box
-//    */
-//   $meta_boxes[] = array(
-//     'id'         => 'itinerary-options',
-//     'title'      => 'Itinerary Options',
-//     'pages'      => array('cpt_itinerary'),
-//     'context'    => 'normal',
-//     'priority'   => 'high',
-//     'show_names' => true,
-//     'fields'     => array(
-//       array(
-//           'name' => __( 'Website URL', 'cmb' ),
-//           'id'   => $prefix . 'itinerary-url',
-//           'type' => 'text_url',
-//            'protocols' => array( 'http', 'https' ), // Array of allowed protocols
-//       ),
-//     ),
-//   );
+    // Start with an underscore to hide fields from custom fields list
+    $prefix = '_cmb_';
 
-//   return $meta_boxes;
-// }
+    $meta_boxes['work_metabox'] = array(
+        'id'         => 'work_metabox',
+        'title'      => __( 'Associated Taxonomies', 'cmb' ),
+        'pages'      => array( 'work' ), // Post type
+        'context'    => 'normal',
+        'priority'   => 'high',
+        'show_names' => true, // Show field names on the left
+        // 'cmb_styles' => true, // Enqueue the CMB stylesheet on the frontend
+        'fields'     => array(
+            array(
+                'name'     => __( 'Industry', 'cmb' ),
+                'desc'     => __( 'Set the industry this project relates to', 'cmb' ),
+                'id'       => $prefix . 'industry_multitaxonomy',
+                'type'     => 'taxonomy_multicheck',
+                'taxonomy' => 'industry', // Taxonomy Slug
+                // 'inline'  => true, // Toggles display to inline
+            ),
+            array(
+                'name'     => __( 'Services', 'cmb' ),
+                'desc'     => __( 'Set the services used in this project', 'cmb' ),
+                'id'       => $prefix . 'service_multitaxonomy',
+                'type'     => 'taxonomy_multicheck',
+                'taxonomy' => 'service', // Taxonomy Slug
+                // 'inline'  => true, // Toggles display to inline
+            ),
+        ),
+    );
+
+    // Add other metaboxes as needed
+
+    return $meta_boxes;
+}
+
+add_filter( 'cmb_meta_boxes', 'cmb_magnum_metaboxes' );

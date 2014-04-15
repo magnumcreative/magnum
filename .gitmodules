@@ -7,3 +7,6 @@
 [submodule "wrk/plugins/posts-to-posts"]
 	path = wrk/plugins/posts-to-posts
 	url = https://github.com/scribu/wp-posts-to-posts.git
+[submodule "wrk/plugins/lazyload"]
+	path = wrk/plugins/lazyload
+	url = https://github.com/bjornjohansen/bj-lazy-load.git

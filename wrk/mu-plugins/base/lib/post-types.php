@@ -17,6 +17,7 @@ function register_cpt_work() {
     'add_new_item'       => 'Add New Work',
     'edit_item'          => 'Edit Work',
     'new_item'           => 'New Work',
+    'all_items'          => __( 'All Work' ),
     'view_item'          => 'View Work',
     'search_items'       => 'Search Work',
     'not_found'          => 'No items found',
@@ -42,10 +43,11 @@ function register_cpt_work() {
     'supports'            => array('title', 'thumbnail', 'excerpt', 'editor', 'comments')
   );
 
-  register_post_type('cpt-work', $args);
-   flush_rewrite_rules();
+  register_post_type('work', $args);
+  // flush_rewrite_rules();
 }
 add_action('init', 'register_cpt_work');
+
 
 /**
  * Industry taxonomy for work
@@ -73,31 +75,28 @@ function register_work_industry_taxonomy() {
     'show_admin_column'  => true,
     'show_in_nav_menus'  => true,
     'sort'               => true,
-    'rewrite'      => array(
-        'slug' => 'industry', 'with_front' => true, 'rewrite' => false
-    ),
+    'rewrite'            => array('slug' => 'industry'),
   );
-  register_taxonomy('work-industry', 'cpt-work', $args);
-   flush_rewrite_rules();
+  register_taxonomy('industry', 'work', $args);
 }
-add_action('init', 'register_work_industry_taxonomy');
+add_action('init', 'register_work_industry_taxonomy', 0 );
 
 /**
- * Feature taxonomy for Work
+ * Service taxonomy for work
  */
-function register_work_feature_taxonomy() {
+function register_service_taxonomy() {
   $labels = array(
-    'name'              => 'Feature',
-    'singular_name'     => 'Feature',
-    'search_items'      => 'Search Features',
-    'all_items'         => 'All Features',
-    'parent_item'       => 'Parent Feature',
-    'parent_item_colon' => 'Parent Feature:',
-    'edit_item'         => 'Edit Feature',
-    'update_item'       => 'Update Feature',
-    'add_new_item'      => 'Add New Feature',
-    'new_item_name'     => 'New Feature Name',
-    'menu_name'         => 'Feature'
+    'name'              => 'Service',
+    'singular_name'     => 'Service',
+    'search_items'      => 'Search Industries',
+    'all_items'         => 'All Industries',
+    'parent_item'       => 'Parent Service',
+    'parent_item_colon' => 'Parent Service:',
+    'edit_item'         => 'Edit Service',
+    'update_item'       => 'Update Service',
+    'add_new_item'      => 'Add New Service',
+    'new_item_name'     => 'New Service Name',
+    'menu_name'         => 'Service'
   );
 
   $args = array(
@@ -108,51 +107,22 @@ function register_work_feature_taxonomy() {
     'show_admin_column'  => true,
     'show_in_nav_menus'  => true,
     'sort'               => true,
-    'rewrite'      => array('slug' => 'features'),
+    'rewrite'            => array('slug' => 'service'),
   );
-  register_taxonomy('work-feature', 'cpt-work', $args);
-  // flush_rewrite_rules();
+  register_taxonomy('service', 'work', $args);
 }
-add_action('init', 'register_work_feature_taxonomy');
+add_action('init', 'register_service_taxonomy', 0 );
+
+
 
 
 /**
- * Services custom post type
+ * We hide the taxonomy meta box LANGUAGES in the admin
+ * this keeps groups all the fields in a single area instead
+ * of separating it out to the right side where departments sit
  */
-function register_cpt_service() {
-  $labels = array(
-    'name'               => 'Services',
-    'singular_name'      => 'Service',
-    'add_new'            => 'Add New',
-    'add_new_item'       => 'Add New Service',
-    'edit_item'          => 'Edit Service',
-    'new_item'           => 'New Service',
-    'view_item'          => 'View Service',
-    'search_items'       => 'Search Services',
-    'not_found'          => 'No items found',
-    'not_found_in_trash' => 'Nothing found in trash',
-    'parent_item_colon'  => '',
-    'menu_name'          => 'Services'
-  );
-
-  $args = array(
-    'labels'              => $labels,
-    'public'              => true,
-    'exclude_from_search' => false, // setting this to true will disable taxonomies from having archive abilities
-    'publicly_queryable'  => true,
-    'show_ui'             => true,
-    'show_in_menu'        => true,
-    'query_var'           => true,
-    'rewrite'             => array('slug' => 'service'),
-    'capability_type'     => 'post',
-    'has_archive'         => true,
-    'hierarchical'        => false, // set this to true to disable post sorting
-    'menu_position'       => 5,
-    'menu_icon'           => 'dashicons-feedback',
-    'supports'            => array('title', 'thumbnail', 'excerpt', 'editor', 'comments')
-  );
-
-  register_post_type('cpt-service', $args);
-  // flush_rewrite_rules();
+function remove_taxonomies_metaboxes() {
+    remove_meta_box( 'industrydiv', 'work', 'side' );
+    remove_meta_box( 'servicediv', 'work', 'side' );
 }
-add_action('init', 'register_cpt_service');
+add_action( 'admin_menu' , 'remove_taxonomies_metaboxes' );
