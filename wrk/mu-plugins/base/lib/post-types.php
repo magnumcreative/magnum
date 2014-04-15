@@ -154,5 +154,6 @@ add_action('init', 'register_tech_taxonomy', 0 );
 function remove_taxonomies_metaboxes() {
     remove_meta_box( 'industrydiv', 'work', 'side' );
     remove_meta_box( 'servicediv', 'work', 'side' );
+    remove_meta_box( 'techdiv', 'work', 'side' );
 }
 add_action( 'admin_menu' , 'remove_taxonomies_metaboxes' );

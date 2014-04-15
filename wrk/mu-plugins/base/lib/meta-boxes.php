@@ -38,6 +38,14 @@ function cmb_magnum_metaboxes( array $meta_boxes ) {
                 'taxonomy' => 'service', // Taxonomy Slug
                 // 'inline'  => true, // Toggles display to inline
             ),
+            array(
+                'name'     => __( 'Technology', 'cmb' ),
+                'desc'     => __( 'Set the tech used in this project', 'cmb' ),
+                'id'       => $prefix . 'tech_multitaxonomy',
+                'type'     => 'taxonomy_multicheck',
+                'taxonomy' => 'tech', // Taxonomy Slug
+                // 'inline'  => true, // Toggles display to inline
+            ),
         ),
     );
 
