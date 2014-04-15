@@ -10,3 +10,6 @@
 [submodule "wrk/plugins/lazyload"]
 	path = wrk/plugins/lazyload
 	url = https://github.com/bjornjohansen/bj-lazy-load.git
+[submodule "wrk/plugins/roots-rewrites"]
+	path = wrk/plugins/roots-rewrites
+	url = https://github.com/roots/roots-rewrites.git
