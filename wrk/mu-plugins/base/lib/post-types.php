@@ -113,7 +113,37 @@ function register_service_taxonomy() {
 }
 add_action('init', 'register_service_taxonomy', 0 );
 
+/**
+ * Technolody taxonomy for work
+ */
+function register_tech_taxonomy() {
+  $labels = array(
+    'name'              => 'Technology',
+    'singular_name'     => 'Technology',
+    'search_items'      => 'Search Industries',
+    'all_items'         => 'All Industries',
+    'parent_item'       => 'Parent Technology',
+    'parent_item_colon' => 'Parent Technology:',
+    'edit_item'         => 'Edit Technology',
+    'update_item'       => 'Update Technology',
+    'add_new_item'      => 'Add New Technology',
+    'new_item_name'     => 'New Technology Name',
+    'menu_name'         => 'Technology'
+  );
 
+  $args = array(
+    'labels' => $labels,
+    'hierarchical'       => false,
+    'show_ui'            => true,
+    'query_var'          => true,
+    'show_admin_column'  => true,
+    'show_in_nav_menus'  => true,
+    'sort'               => true,
+    'rewrite'            => array('slug' => 'tech'),
+  );
+  register_taxonomy('tech', 'work', $args);
+}
+add_action('init', 'register_tech_taxonomy', 0 );
 
 
 /**
