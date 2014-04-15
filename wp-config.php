@@ -1,4 +1,15 @@
 <?php
+define( 'DISALLOW_FILE_EDIT', true );
+
+/**#@+
+// ====
+// stop wordpress from auto updating because we have it under version control
+// enabeling this may result in local and live environments becoming different
+*/
+define( 'WP_AUTO_UPDATE_CORE', false );
+/**#@+
+//
+*/
 /**
  * The base configurations of the WordPress.
  *
@@ -31,7 +42,7 @@ if ($_SERVER['REMOTE_ADDR']=='127.0.0.1') {
 
 // MySQL settings - You can get this info from your web host //
 if (WP_ENV == 'development') {
-    define('DB_NAME', 'mydb-dev');
+    define('DB_NAME', 'mag-dev');
     define('DB_USER', 'root');
     define('DB_PASSWORD', '');
     define('DB_HOST', 'localhost');
@@ -49,7 +60,7 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
 /** Sets the default theme to load, should rename this once you start your project */
-define('WP_DEFAULT_THEME', 'roots');
+define('WP_DEFAULT_THEME', 'magnum');
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -60,14 +71,14 @@ define('WP_DEFAULT_THEME', 'roots');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'put your unique phrase here');
-define('SECURE_AUTH_KEY',  'put your unique phrase here');
-define('LOGGED_IN_KEY',    'put your unique phrase here');
-define('NONCE_KEY',        'put your unique phrase here');
-define('AUTH_SALT',        'put your unique phrase here');
-define('SECURE_AUTH_SALT', 'put your unique phrase here');
-define('LOGGED_IN_SALT',   'put your unique phrase here');
-define('NONCE_SALT',       'put your unique phrase here');
+define('AUTH_KEY',         ' j}J@2|rRr6d3#6l&[M8 WIDQ[(0?x8iy?B]|aln8=htP*C,q$Zx5SLpAU}a)cf?');
+define('SECURE_AUTH_KEY',  'K_fnxgHeR>)vgK:pKPb5*d0kecf3rydU.QP+v|7:yx+D}(>yOf+-9KnF+%I=u_Pc');
+define('LOGGED_IN_KEY',    ']}L|DJTH~3TC<NokX:1%;6k/bci?*S-x;O*3LxyxK0HEy@ndH|JYi1Yf?jzx|ei$');
+define('NONCE_KEY',        '[s/l%6$R7U)E-f:JJB}0jZf~+2K^>?%q]bi|;S+^tgEyKAP1MCNgpaj5L~Ed/-2{');
+define('AUTH_SALT',        '@qZ^,xugO*hB8jtnv@sK,b!J/F)7yOr=!9=MG;?:g;_u559qJJ!+#!;>XMpve/NN');
+define('SECURE_AUTH_SALT', 'E.+^oiTnhyOq=!tTE86:WoUi}/|c0[o&%bQ?uT`SkE~%k}t3#P1*vx+|YPs#QKw=');
+define('LOGGED_IN_SALT',   '[-6|v8kP7Rzsn`$lEK?f-9<aJW57yLu&],BO_w--y{PZ0cPr7nbe,z1b`,-OLv*C');
+define('NONCE_SALT',       '+XT<74S,~u+$8<w!W_,~`8gH0Jf7%9.{BDwtmn#8-3,gh|-<1;*^F~1N(+oRyxb5');
 
 /**#@-*/
 
@@ -77,7 +88,7 @@ define('NONCE_SALT',       'put your unique phrase here');
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'ucn_';
+$table_prefix  = 'mcr_';
 
 /**
  * WordPress Localized Language, defaults to English.

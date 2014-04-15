@@ -4,3 +4,6 @@
 [submodule "wrk/plugins/wordpress-seo"]
 	path = wrk/plugins/wordpress-seo
 	url = git://github.com/Yoast/wordpress-seo.git
+[submodule "wrk/plugins/posts-to-posts"]
+	path = wrk/plugins/posts-to-posts
+	url = https://github.com/scribu/wp-posts-to-posts.git
